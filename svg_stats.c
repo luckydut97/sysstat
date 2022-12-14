@@ -1239,7 +1239,7 @@ __print_funct_t svg_print_cpu_stats(struct activity *a, int curr, int action, st
 						j  = 5;	/* -u */
 					}
 					else {	/* DISPLAY_CPU_ALL(a->opt_flags) */
-						j = 9;	/* -u ALL */
+						j = 10;	/* -u ALL */
 					}
 
 					/* Check min/max values for %user, etc. */
@@ -1349,9 +1349,14 @@ __print_funct_t svg_print_cpu_stats(struct activity *a, int curr, int action, st
 					  &offset, ll_sp_value(scp->cpu_guest_nice, scc->cpu_guest_nice, deltot_jiffies),
 					  out + pos + 8, outsize + pos + 8, svg_p->dt,
 					  spmin + pos + 8, spmax + pos + 8);
+				/* %new */
+				cpuappend(record_hdr->ust_time - svg_p->ust_time_ref,
+					  &offset, ll_sp_value(scp->cpu_nice, scc->guest_nice, deltot_jiffies),
+					  out + pos + 9, outsize + pos + 9, svg_p->dt,
+					  spmin + pos + 9, spmax + pos + 9);
 				
 
-				j = 9;
+				j = 10;
 			}
 			else {
 				j = 5;
